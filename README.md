@@ -1,8 +1,6 @@
 # Diabetes Prediction with AI
 
-
 ![app.gif](image/app.gif)
-
 
 This project demonstrates a machine learning solution for predicting diabetes based on user-provided health data. The application uses **Streamlit** for an interactive web interface and advanced interpretability tools like SHAP and permutation importance to explain model predictions.
 
@@ -83,7 +81,6 @@ The dataset contains the following details:
 - **Age:** Mean = 33.24, Max = 81
 - **Outcome:** Proportion of `1` (positive diabetes) = 34.9%
 
-
 #### We use only `Pregnancies`, `Glucose`, `BMI`, `Insulin`, `Age` for prediction.
 ---
 
@@ -91,10 +88,9 @@ The dataset contains the following details:
 You can learn more about the model in detail from [here](notebooks/Model.ipynb). The `RandomForestClassifier` model was chosen through experimentation and showed the best performance. The required hyperparameters were identified using the `optuna` optimizer. For the model to function, it needs `FeatureEngineering`, `WoEEncoding`, and `ColumnSelector` transformers, which are combined through a pipeline.
 `Cross-validation` and `ROC AUC` were used for model selection because the number of observations was small, and splitting into test/train sets would have been inaccurate.
 
-### About tarnsformers
+### About transformers
 #### **1. FeatureEngineering**
 Transforms raw data into a format suitable for machine learning. This includes scaling, encoding, creating new features, or handling missing data.
-
 
 #### **2. WoEEncoding (Weight of Evidence Encoding)**
 Features must help to better explain the `Outcome` after WoE.
@@ -112,7 +108,7 @@ If a feature `X` has the following counts:
 #### **3. ColumnSelector**
 Selects specific columns *Pregnancies*, *Glucose*, *BMI*, *PregnancyRatio*,
     *RiskScore*, *InsulinEfficiency*, *Glucose_BMI*, *BMI_Age*,
-    *Glucose_woe*, *RiskScore_woe* after `FeatureEngineering`, it helps remove noice columns.
+    *Glucose_woe*, *RiskScore_woe* after `FeatureEngineering`, it helps remove noise columns.
 
 ---
 ## Features
@@ -139,6 +135,13 @@ Selects specific columns *Pregnancies*, *Glucose*, *BMI*, *PregnancyRatio*,
 - Python 3.10 or above
 - Pip package manager
 
+### Steps
+```bash
+git clone https://github.com/SouravStark009/Diabetes-risk-prediction.git
+cd Diabetes-risk-prediction
+pip install -r requirements.txt
+streamlit run main.py
+```
 
 ## How It Works
 
@@ -154,36 +157,35 @@ Selects specific columns *Pregnancies*, *Glucose*, *BMI*, *PregnancyRatio*,
 4. **Model Performance**:
    - Metrics such as Accuracy, F1 Score, and ROC AUC are displayed.
 
-
 # Project Structure
-```
-Diabetes-Prediction/
-├── README.md                 # Project documentation
-├── main.py                   # Entry point for the Streamlit app
-├── loader.py                 # Data loading and preprocessing
-├── training.py               # Script for training the model
-├── requirements.txt          # Project dependencies
-├── LICENSE                   # License file
+
+Diabetes-risk-prediction/
+├── README.md # Project documentation
+├── main.py # Entry point for the Streamlit app
+├── loader.py # Data loading and preprocessing
+├── training.py # Script for training the model
+├── requirements.txt # Project dependencies
+├── LICENSE # License file
 ├── datasets/
-│   ├── diabetes.csv          # Dataset used for training and predictions
-├── models/
-│   ├── model.pkl             # Trained machine learning model
-├── images/
-│   ├── page_icon.jpeg        # Application page icon
+│ ├── diabetes.csv # Dataset used for training and predictions
+├── model.pkl # Trained machine learning model
+├── image/
+│ └── app.gif
 ├── data/
-│   ├── config.py             # Configuration variables
-│   ├── base.py               # Static HTML/CSS content
-├── functions/
-│   ├── model.py              # Custom model implementation
-│   ├── function.py           # Utility functions
-└── app/                      # Application logic and components
-    ├── predict.py            # Prediction logic
-    ├── explainer.py          # SHAP-based explanations
-    ├── perm_importance.py    # Permutation importance analysis
-    ├── performance.py        # Visualization of model performance metrics
-    ├── input.py              # User input handling for predictions
-    ├── about.py              # Informational section on diabetes
-```
+│ ├── config.py # Configuration variables
+│ ├── base.py # Static HTML/CSS content
+├── function/
+│ ├── model.py # Custom model implementation
+│ ├── function.py # Utility functions
+│ └── transformers.py # FeatureEngineering, WoEEncoding, ColumnSelector
+└── app/ # Application logic and components
+├── predict.py # Prediction logic
+├── explainer.py # SHAP-based explanations
+├── perm_importance.py # Permutation importance analysis
+├── performance.py # Visualization of model performance metrics
+├── input.py # User input handling for predictions
+├── header.py # App header
+└── about.py # Informational section on diabetes
 
 
 ---
@@ -201,12 +203,12 @@ Diabetes-Prediction/
 
 ## Model Performance
 
-Performance metrics calculated:
-- **Accuracy**: Percentage of correct predictions. (0.7857)
-- **Precision**: Ratio of true positives to total positive predictions. (0.6296)
-- **Recall**: Ratio of true positives to total actual positives. (0.9444)
-- **F1 Score**: Harmonic mean of Precision and Recall. (0.7556)
-- **ROC AUC**: Area under the ROC curve. (0.8367)
+Performance metrics from my own training run:
+- **Accuracy**: 82.81%
+- **Precision**: _TODO — check app's Performance section_
+- **Recall**: _TODO — check app's Performance section_
+- **F1 Score**: _TODO — check app's Performance section_
+- **ROC AUC**: _TODO — check app's Performance section_
 
 Metrics are displayed as donut charts in the application.
 
@@ -218,6 +220,7 @@ This project was developed to:
 - Build knowledge in machine learning, especially in healthcare.
 - Gain hands-on experience with model interpretability techniques like SHAP.
 - Deploy an AI solution using **Streamlit**.
+- Practice building and debugging a full ML pipeline independently, using an existing project as a learning reference.
 
 ---
 
@@ -226,14 +229,14 @@ This project was developed to:
 Contributions are welcome! Follow these steps:
 1. Fork the repository.
 2. Create a new feature branch:
-   ```bash
+```bash
    git checkout -b feature-name
-   ```
+```
 3. Commit your changes and push:
-   ```bash
+```bash
    git commit -m "Feature description"
    git push origin feature-name
-   ```
+```
 4. Submit a pull request.
 
 ---
@@ -241,4 +244,3 @@ Contributions are welcome! Follow these steps:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-

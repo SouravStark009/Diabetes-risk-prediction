@@ -10,8 +10,7 @@ def app(input_data):
     explainer = shap.TreeExplainer(model.named_steps['model'])
     shap_values_single = explainer.shap_values(sample_transformed)
 
-    shap_values_class_1 = shap_values_single[0][:, 1]  
-
+    shap_values_class_1 = shap_values_single[0][:, 1]
 
     def stream_data():
         text = f"""

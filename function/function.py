@@ -2,7 +2,7 @@ import altair as alt
 import pandas as pd
 
 
-def make_donut(input_response, input_text, input_color=None, 
+def make_donut(input_response, input_text, input_color=None,
                R=230, innerRadius=75, cornerRadius=20, fontSize=20):
     if input_color is None:
         input_color = 'blue' if input_response < 50 else 'red'
@@ -34,13 +34,13 @@ def make_donut(input_response, input_text, input_color=None,
                         legend=None),
     ).properties(width=R, height=R)
 
-    text = plot.mark_text(align='center', 
-                          color=chart_color[0], 
-                          font="Lato", 
-                          fontSize=fontSize, 
+    text = plot.mark_text(align='center',
+                          color=chart_color[0],
+                          font="Lato",
+                          fontSize=fontSize,
                           fontWeight=100,
                           fontStyle="italic").encode(text=alt.value(f'{input_response} %'))
-    plot_bg = alt.Chart(source_bg).mark_arc(innerRadius=innerRadius, 
+    plot_bg = alt.Chart(source_bg).mark_arc(innerRadius=innerRadius,
                                             cornerRadius=cornerRadius).encode(
         theta="% value",
         color=alt.Color("Topic:N",

@@ -4,7 +4,6 @@ from PIL import Image
 from data.config import thresholds
 
 
-
 from sklearn.metrics import (accuracy_score,
                              precision_score,
                              recall_score,
@@ -18,7 +17,6 @@ y = data['Outcome']
 page_icon = Image.open("image/page_icon.jpeg")
 
 model = joblib.load('model.pkl')
-
 
 
 y_score = model.predict_proba(X)[:, 1]

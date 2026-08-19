@@ -47,5 +47,5 @@ def app():
     )
 
     st.sidebar.markdown('---')
-    return pd.DataFrame([[pregnancies_value, glucose_value, insulin_value, bmi_value, age_value]], 
-                        columns=['Pregnancies', 'Glucose', 'Insulin','BMI','Age'])    
+    return pd.DataFrame([[pregnancies_value, glucose_value, insulin_value, bmi_value, age_value]],
+                        columns=['Pregnancies', 'Glucose', 'Insulin', 'BMI', 'Age'])

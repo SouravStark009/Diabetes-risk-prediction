@@ -14,7 +14,8 @@ class FeatureEngineering(BaseEstimator, TransformerMixin):
         data = X.copy()
         data['PregnancyRatio'] = data['Pregnancies'] / (data['Age'] + self.epsilon)
         data['RiskScore'] = (0.5 * data['Glucose'] + 0.3 * data['BMI'] + 0.2 * data['Age'])
-        data['InsulinEfficiency'] = (data['Insulin'] + self.epsilon) / (data['Glucose'] + self.epsilon)
+        data['InsulinEfficiency'] = (data['Insulin'] + self.epsilon) / \
+            (data['Glucose'] + self.epsilon)
         data['Glucose_BMI'] = (data['Glucose'] + self.epsilon) / (data['BMI'] + self.epsilon)
         data['BMI_Age'] = data['BMI'] * data['Age']
         return data
@@ -49,13 +50,16 @@ class WoEEncoding(BaseEstimator, TransformerMixin):
 
     def _calculate_woe(self, data, feature_name, y):
         data['target'] = y
-        grouped = data.groupby(feature_name, observed=False)['target'].value_counts().unstack(fill_value=0)
+        grouped = data.groupby(
+            feature_name,
+            observed=False)['target'].value_counts().unstack(
+            fill_value=0)
         grouped.columns = ['non_events', 'events']
         grouped['event_rate'] = grouped['events'] / grouped['events'].sum()
         grouped['non_event_rate'] = grouped['non_events'] / grouped['non_events'].sum()
         grouped['WOE'] = np.log(grouped['event_rate'] / grouped['non_event_rate'])
         return grouped.reset_index()
-    
+
 
 class ColumnSelector(BaseEstimator, TransformerMixin):
     def __init__(self, columns):

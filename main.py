@@ -1,3 +1,10 @@
+from app.about import app as about_app
+from app.perm_importance import app as perm_importance_app
+from app.performance import app as performance_app
+from app.explainer import app as explainer_app
+from app.predict import app as predict_app
+from app.input import app as input_app
+from app.header import app as header_app
 from function.function import *
 import streamlit as st
 from loader import page_icon
@@ -11,29 +18,22 @@ st.set_page_config(
 )
 
 # Header
-from app.header import app
-app()
+header_app()
 
 # Inputs
-from app.input import app
-input_data =  app()
+input_data = input_app()
 
 # Prediction
-from app.predict import app
-app(input_data)
+predict_app(input_data)
 
-#### Explain
-from app.explainer import app
-app(input_data)
+# Explain
+explainer_app(input_data)
 
 # Model performance
-from app.performance import app
-app()
+performance_app()
 
 # perm_importance
-from app.perm_importance import app
-app()
+perm_importance_app()
 
 # About
-from app.about import app
-app()
+about_app()
