@@ -58,13 +58,13 @@ jobs:
           name: coverage-report-${{ matrix.python-version }}
           path: coverage.xml
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
+  # deploy:
+  #   needs: test
+  #   runs-on: ubuntu-latest
 
-    if: github.ref == 'refs/heads/main'
+  #   if: github.ref == 'refs/heads/main'
 
-    steps:
-      - name: Deploy to Render
-        run: |
-          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+  #   steps:
+  #     - name: Deploy to Render
+  #       run: |
+  #         curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
