@@ -1,0 +1,14 @@
+dill
+matplotlib
+numpy
+pandas
+pillow
+plotly
+scikit-learn
+seaborn
+shap
+streamlit
+toml
+joblib
+altair
+pytest>=7.0
